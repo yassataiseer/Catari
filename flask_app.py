@@ -7,8 +7,13 @@ app = Flask(__name__)
 def index():
     return render_template("sign-up.html")
 
+@app.route("/login-link")
+def login_link():
+    return render_template("login.html")
 
-
+@app.route("/signup-link")
+def signup_link():
+    return render_template("sign-up.html")
 
 
 if __name__ == '__main__':
