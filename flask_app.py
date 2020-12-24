@@ -2,7 +2,7 @@ from flask import Flask, jsonify,render_template, request, session
 from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 import sqlite3
 import requests
-
+from user_validator import users
 
 app = Flask(__name__)
 
@@ -22,8 +22,23 @@ def signup_link():
 def login_user():
     email = request.form["email"]
     password = request.form["password"]
+    query = users.Validate_user(email,password)
+    print(query)
+    if query== True:
+        return "logged in"
+    else:
+        return "invalid creds." 
 
-    return "logged in"
+@app.route("/sign-up", methods=["POST"])
+def sign_up():
+    email = request.form["email"]
+    password = request.form["password"]
+    insert_status = users.add_user(email,password)
+    print(insert_status)
+    if insert_status==True:
+        return "dones succesfully"
+    else:
+        return "invalid creds"
 
 if __name__ == '__main__':
     app.run(debug=True)
