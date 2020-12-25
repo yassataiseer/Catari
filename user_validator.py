@@ -18,7 +18,7 @@ class users:
     def add_user(email, password):
         if "@" not in email or "." not in email:
             return False
-        c.execute("INSERT INTO stuffToPlot VALUES(?,?)",(email,password))
+        c.execute("INSERT INTO stuffToPlot VALUES(?,?,?)",(email,password,None))
         conn.commit()
         return True
 

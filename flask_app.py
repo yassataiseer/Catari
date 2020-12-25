@@ -36,7 +36,7 @@ def login_user():
     query = users.Validate_user(email,password)
     print(query)
     if query== True:
-        return render_template("search_engine.html")
+        return render_template("search_engine.html",email=email)
     else:
         return "invalid creds." 
 
@@ -47,7 +47,7 @@ def sign_up():
     insert_status = users.add_user(email,password)
     print(insert_status)
     if insert_status==True:
-        return render_template("search-engine.html")
+        return render_template("search_engine.html",email=email)
 
     else:
         return "invalid creds"

@@ -7,10 +7,7 @@
         height: 100%;
       }
 
-      #wrapper {
-        min-height: 100%
-        position: relative;
-      }
+
       
       /* Central content */
       
@@ -22,9 +19,7 @@
       }
       
       #logo {
-        background-image: url('logo.png');
-        background-size: 272px auto;
-        background-repeat: no-repeat;
+
       
         width:280px;
         height: 92px;
@@ -187,18 +182,22 @@
       }</style>
     <head>
       <title>Google</title>
+
     </head>
     <body>
+
       <div id="wrapper">
         <div id="header">
           <ul>
-            <li id="user">{{email}}fdsa</li>
+            <li id="user">{{email}}</li>
+            <li id="cart" >My Cart</li>
             <li id="logout">logout</li>
           </ul>
         </div>
+
         <div id="content">
             <div id="logo">
-               <h1>Catari Images</h1>
+               <img src="{{url_for('static', filename='logo.png')}}" />
             </div>
 
             <form  name="search_query" action="search_query" method="POST" class="modal-content"> 

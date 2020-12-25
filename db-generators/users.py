@@ -4,10 +4,10 @@ conn = sqlite3.connect('users.db')
 c = conn.cursor()
 
 def create_table():
-    c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(email TEXT, password TEXT)")
+    c.execute("CREATE TABLE IF NOT EXISTS stuffToPlot(email TEXT, password TEXT, cart TEXT)")
 
 def data_entry():
-    c.execute("INSERT INTO stuffToPlot VALUES('yassataiseer@gmail.com','yassa123'  )")
+    c.execute("INSERT INTO stuffToPlot VALUES('yassataiseer@gmail.com','yassa123', 'None'  )")
     conn.commit()
     c.close()
     conn.close()
