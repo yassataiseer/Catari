@@ -19,7 +19,11 @@ def login_link():
 def search():
     return render_template("search_engine.html")
 
-
+@app.route("/search_query" , methods = ["POST"])
+def search_query():
+    query_bar = request.form["search"]
+    
+    return query_bar
 
 @app.route("/signup-link")
 def signup_link():
@@ -32,7 +36,7 @@ def login_user():
     query = users.Validate_user(email,password)
     print(query)
     if query== True:
-        return render_template("search-engine.html")
+        return render_template("search_engine.html")
     else:
         return "invalid creds." 
 
@@ -43,7 +47,8 @@ def sign_up():
     insert_status = users.add_user(email,password)
     print(insert_status)
     if insert_status==True:
-        return "dones succesfully"
+        return render_template("search-engine.html")
+
     else:
         return "invalid creds"
 

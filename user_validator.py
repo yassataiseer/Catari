@@ -11,7 +11,6 @@ class users:
             return False
         c.execute("SELECT * FROM stuffToPlot")
         data = c.fetchall()
-        print(data)
         for row in data:
             if row[0]==email and password==row[1]:
                 return True
