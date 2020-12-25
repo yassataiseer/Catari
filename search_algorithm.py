@@ -2,10 +2,24 @@
 
 from difflib import SequenceMatcher
 import sqlite3
-conn = sqlite3.connect('images.db')
+conn = sqlite3.connect('images.db',check_same_thread=False)
 c = conn.cursor()
 
-class search:
+class find:
+    def get_value(val):
+        hashtags = find.dictionary()
+        answer = []
+        for key, value in hashtags.items():
+            for components in value:
+                if find.similar(val,components)>=0.6:
+                    if key+".jpg" in answer:
+                        pass
+                    else:
+                        a = key+".jpg"
+                        answer.append(a)
+                else:
+                    pass
+        return answer              
     def dictionary():
         hastags = {}
         values_images = c.execute("SELECT * FROM stuffToPlot")
@@ -27,19 +41,7 @@ class search:
     def similar(a, b):
         return SequenceMatcher(None, a, b).ratio()
 
-    def get_key(val):
-        hashtags = search.dictionary()
-        answer = []
-        for key, value in hashtags.items():
-            for components in value:
-                if search.similar(val,components)>=0.5:
-                    if key in answer:
-                        pass
-                    else:
-                        answer.append(key)
-                else:
-                    pass
-        return answer                
+  
             
 #print(search.get_key("cute cat"))
 

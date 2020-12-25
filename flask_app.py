@@ -3,7 +3,7 @@ from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
 import sqlite3
 import requests
 from user_validator import users
-
+from search_algorithm import find
 app = Flask(__name__)
 
 @app.route("/")
@@ -19,11 +19,14 @@ def login_link():
 def search():
     return render_template("search_engine.html")
 
-@app.route("/search_query" , methods = ["POST"])
+@app.route("/search_query" , methods = ["POST","GET"])
 def search_query():
     query_bar = request.form["search"]
-    
-    return query_bar
+    query_bar = str(query_bar)
+    print(query_bar)
+    images = find.get_value(query_bar)
+    print(images)
+    return render_template("images.html",images=images)
 
 @app.route("/signup-link")
 def signup_link():
@@ -48,7 +51,6 @@ def sign_up():
     print(insert_status)
     if insert_status==True:
         return render_template("search_engine.html",email=email)
-
     else:
         return "invalid creds"
 
